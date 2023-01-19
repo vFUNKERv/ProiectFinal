@@ -101,9 +101,8 @@ namespace ProiectFinalASP.Controllers
                     {
                         //Criptarea datelor - contributia lui Joldes
                         byte[] encryptPassword = EncryptString(password);
-                        byte[] encryptUsername = EncryptString(name);
                         Credentials.LoggedinPassword = encryptPassword;
-                        Credentials.LoggedinUsername = encryptUsername;
+                        Credentials.LoggedinUsername = name;
                         //Criptarea datelor - contributia lui Joldes
                         Credentials.IsLoggedIn= true;
                         return Json("Succesfully logged in");

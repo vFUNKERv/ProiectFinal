@@ -7,7 +7,7 @@ namespace ProiectFinalASP.Models
 {
     public static class Credentials
     {
-        public static byte[] LoggedinUsername { get; set; }
+        public static string LoggedinUsername { get; set; }
         public static byte[] LoggedinPassword { get; set; }
         public static bool IsLoggedIn { get; set; }
     }
