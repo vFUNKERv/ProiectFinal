@@ -13,13 +13,14 @@ namespace ProiectFinalASP.Controllers
         public ActionResult Index()
         {
             using (ItemContext idb = new ItemContext())
-            {/*
+            {
+                /*
                 Item i = new Item();
 
-                i.Name = "Sunset Tee";
-                i.ImageUrl = "Tshirt1.png";
-                i.Price = 30;
-                i.Type = "T-Shirt";
+                i.Name = "Wing Trousers";
+                i.ImageUrl = "Pants2.png";
+                i.Price = 999;
+                i.Type = "Pants";
 
                 idb.Items.Add(i);
                 idb.SaveChanges();*/
@@ -34,8 +35,8 @@ namespace ProiectFinalASP.Controllers
         {
             using (var db = new ItemContext())
             {
-                db.Carts.RemoveRange(db.Carts);
-                db.SaveChanges();
+                db.Database.ExecuteSqlCommand("DELETE FROM Carts");
+                //db.SaveChanges();
             }
 
             return Json("Confirmed Purchase");
