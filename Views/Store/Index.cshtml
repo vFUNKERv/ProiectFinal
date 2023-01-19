@@ -1,0 +1,42 @@
+﻿@using ProiectFinalASP.Models;
+
+@model IEnumerable<ProiectFinalASP.Models.Item>
+
+<html>
+<body>
+    <style>
+        td {
+            padding: 60px;
+        }
+    </style>
+    <table>
+        <thead>
+            <tr>
+                <th>Product type</th>
+                <th>Product name</th>
+                <th>Product price</th>
+                <th>Product image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Type</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <img src="@Url.Content("~/Images/")@item.ImageUrl" alt="Image" width="100" height="100">
+                    </td>
+                    @if (Credentials.IsLoggedIn == true)
+                    {
+                        <td>
+                            @Html.ActionLink("Buy", "AddToCart", "Admin", new { id = item.Id }, null)
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

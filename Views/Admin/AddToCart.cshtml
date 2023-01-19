@@ -1,0 +1,72 @@
+﻿@using ProiectFinalASP.Models;
+
+@model IEnumerable<ProiectFinalASP.Models.Cart>
+
+@{
+    ViewBag.Title = "ShoppingCart";
+}
+
+@if (Credentials.IsLoggedIn == true)
+{
+    <h2>Logged in as @Credentials.LoggedinUsername</h2>
+    <html>
+    <body>
+        <style>
+            td {
+                padding: 40px;
+            }
+        </style>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product name</th>
+                    <th>Product price</th>
+                    <th>Product image</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.itemName</td>
+                        <td>@item.itemPrice</td>
+                        <td>
+                            <img src="@Url.Content("~/Images/")@item.itemImageUrl" alt="Image" width="50" height="50">
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form id="myForm">
+            <button type="submit">Confirm Purchase</button>
+        </form>
+    </body>
+</html>
+}
+else
+{
+<h1>Log in to see shopping cart</h1>
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myForm").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Confirm", "Store")",
+                    success: function (data) {
+                        // Handle the response
+                        alert(data);
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle the error
+                        alert(error);
+                    }
+                });
+            });
+        });
+    </script>
+}

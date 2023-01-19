@@ -1,0 +1,50 @@
+﻿@model ProiectFinalASP.Models.User
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Register</h2>
+
+<html>
+<body>
+    <style>
+        td {
+            padding: 40px;
+        }
+    </style>
+
+    <form id="myForm">
+        <input type="text" id="txtName" name="name" placeholder="Enter your name" required>
+        <input type="password" id="txtPassword" name="password" placeholder="Enter your password" required>
+        <button type="submit">Submit</button>
+    </form>
+
+</body>
+</html>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myForm").submit(function (e) {
+                e.preventDefault();
+                var name = $("#txtName").val();
+                var password = $("#txtPassword").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("AccountCreate", "Admin")",
+                    data: { name: name, password: password },
+                    success: function (data) {
+                        // Handle the response
+                        alert(data);
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle the error
+                        alert(error);
+                    }
+                });
+            });
+        });
+    </script>
+}
