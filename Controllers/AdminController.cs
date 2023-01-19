@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
+using Encryption;
 
 namespace ProiectFinalASP.Controllers
 {
@@ -52,9 +53,9 @@ namespace ProiectFinalASP.Controllers
         {
             return View();
         }
-        //Criptarea datelor - contributia lui Joldes
+        //Criptarea datelor - contributia lui Joldes/*
         static RijndaelManaged rijndael = new RijndaelManaged();
-        static byte[] EncryptString(string plainText)
+        /*static byte[] EncryptString(string plainText)
         {
             byte[] plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             using (MemoryStream ms = new MemoryStream())
@@ -65,7 +66,7 @@ namespace ProiectFinalASP.Controllers
                 byte[] cipherTextBytes = ms.ToArray();
                 return cipherTextBytes;
             }
-        }
+        }*/
         //Criptarea datelor - contributia lui Joldes
 
         [HttpPost]
@@ -100,7 +101,7 @@ namespace ProiectFinalASP.Controllers
                     if (user.Username == name && user.Password == password)
                     {
                         //Criptarea datelor - contributia lui Joldes
-                        byte[] encryptPassword = EncryptString(password);
+                        byte[] encryptPassword = Encryption.Encryption.EncryptString(password);
                         Credentials.LoggedinPassword = encryptPassword;
                         Credentials.LoggedinUsername = name;
                         //Criptarea datelor - contributia lui Joldes
