@@ -8,7 +8,7 @@ using ProiectFinalASP.Models;
 
 namespace ProiectFinalASP.Models
 {
-    public class Cart
+    public class Cart //Cart class that keeps count of bought items
     {
         [Key]
         public int Id { get; set; }

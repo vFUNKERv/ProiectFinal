@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ProiectFinalASP.Models
 {
-    public static class Credentials
+    public static class Credentials //Static credential class, stores user info
     {
         public static string LoggedinUsername { get; set; }
         public static byte[] LoggedinPassword { get; set; }

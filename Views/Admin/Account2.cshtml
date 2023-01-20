@@ -13,7 +13,7 @@
             padding: 40px;
         }
     </style>
-
+    <!-- Form that takes some text and a password, sends it to the below script using a button-->
     <form id="myForm">
         <input type="text" id="txtName" name="name" placeholder="Enter your name" required>
         <input type="password" id="txtPassword" name="password" placeholder="Enter your password" required>
@@ -33,7 +33,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "@Url.Action("AccountCreate", "Admin")",
+                    url: "@Url.Action("AccountCreate", "Admin")", //Sends the relevant data to AccountCreate actionresult method in AdminController
                     data: { name: name, password: password },
                     success: function (data) {
                         // Handle the response

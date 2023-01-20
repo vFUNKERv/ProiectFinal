@@ -3,13 +3,32 @@
 @model IEnumerable<ProiectFinalASP.Models.Item>
 
 <html>
+
 <body>
+    <head>
+        <style>
+            /* Change the background color of the body */
+            body {
+                background-color: #EEEE9B;
+            }
+
+            /* Change the color of all h1 headings */
+            h1 {
+                color: #3498db;
+            }
+
+            /* Add a border to all images */
+            img {
+                border: 2px solid #e74c3c;
+            }
+        </style>
+    </head>
     <style>
         td {
             padding: 60px;
         }
     </style>
-    <table>
+    <table>      <!-- Create table and add columns-->
         <thead>
             <tr>
                 <th>Product type</th>
@@ -19,7 +38,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model) //for each item in ItemContext db Items, show them on the page
             {
                 <tr>
                     <td>@item.Type</td>
@@ -28,7 +47,7 @@
                     <td>
                         <img src="@Url.Content("~/Images/")@item.ImageUrl" alt="Image" width="100" height="100">
                     </td>
-                    @if (Credentials.IsLoggedIn == true)
+                    @if (Credentials.IsLoggedIn == true)//if user is logged in, show buy button, otherwise don't
                     {
                         <td>
                             @Html.ActionLink("Buy", "AddToCart", "Admin", new { id = item.Id }, null)

@@ -8,7 +8,7 @@ using ProiectFinalASP.Models;
 
 namespace ProiectFinalASP.Models
 {
-    public class Item
+    public class Item //Item class with relevant field
     {
         [Key]
         public int Id { get; set; }
@@ -19,11 +19,10 @@ namespace ProiectFinalASP.Models
         public int Price { get; set; }
     }
 
-    public class ItemContext : DbContext
+    public class ItemContext : DbContext // Create db context, and the Items, Carts, and Users tables
     {
         public DbSet<Item> Items { get; set; }
         public DbSet<Cart> Carts { get; set; }
-
         public DbSet<User> Users { get; set; }
     }
 }

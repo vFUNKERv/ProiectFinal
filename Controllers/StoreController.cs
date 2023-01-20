@@ -10,12 +10,12 @@ namespace ProiectFinalASP.Controllers
 {
     public class StoreController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index() // Store index view method that shows all available products
         {
             using (ItemContext idb = new ItemContext())
             {
                 /*
-                Item i = new Item();
+                Item i = new Item();            //code used to add new items at runtime
 
                 i.Name = "Wing Trousers";
                 i.ImageUrl = "Pants2.png";
@@ -25,12 +25,12 @@ namespace ProiectFinalASP.Controllers
                 idb.Items.Add(i);
                 idb.SaveChanges();*/
 
-                var model = idb.Items.ToList();
-                return View(model);
+                var model = idb.Items.ToList(); //Converts all items to a list
+                return View(model); //sends list of items to store index view
             }
         }
 
-        [HttpPost]
+        [HttpPost]//Code for when a cart purchase is succesful
         public ActionResult Confirm()
         {
             using (var db = new ItemContext())

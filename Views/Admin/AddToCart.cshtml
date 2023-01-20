@@ -8,6 +8,7 @@
 
 @if (Credentials.IsLoggedIn == true)
 {
+    <!-- Sow login username-->
     <h2>Logged in as @Credentials.LoggedinUsername</h2>
     <html>
     <body>
@@ -16,7 +17,7 @@
                 padding: 40px;
             }
         </style>
-        <table>
+        <table><!-- Create table and add columns-->
             <thead>
                 <tr>
                     <th>Product name</th>
@@ -25,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
+                @foreach (var item in Model) //Go trough each item in carts database, and show item price and image
                 {
                     <tr>
                         <td>@item.itemName</td>
@@ -37,7 +38,7 @@
                 }
             </tbody>
         </table>
-        <form id="myForm">
+        <form id="myForm"><!-- Add button to confim cart purchase-->
             <button type="submit">Confirm Purchase</button>
         </form>
     </body>
@@ -48,7 +49,7 @@ else
 <h1>Log in to see shopping cart</h1>
 }
 
-@section scripts{
+@section scripts{   
     <script>
         $(document).ready(function () {
             $("#myForm").submit(function (e) {
@@ -56,7 +57,7 @@ else
 
                 $.ajax({
                     type: "POST",
-                    url: "@Url.Action("Confirm", "Store")",
+                    url: "@Url.Action("Confirm", "Store")", //Receive button data and send it to the Confirm method in the StoreController
                     success: function (data) {
                         // Handle the response
                         alert(data);

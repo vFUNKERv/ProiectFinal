@@ -7,17 +7,21 @@ using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using Encryption;
+using System.Web.Management;
 
 namespace ProiectFinalASP.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
+        //basic index view
         public ActionResult Index()
         {
             return View();
         }
 
+        //Add to cart method. When entering by pressing a buy button,
+        //passes id of item. When accesed form layout.cshtml, id gets
+        //passed as 0 and no item is added
         public ActionResult AddToCart(int id)
         {
             if (id == 0)
@@ -44,11 +48,12 @@ namespace ProiectFinalASP.Controllers
                 }
         }
 
+        //simple account page for logging in
         public ActionResult Account()
         {
             return View();
         }
-
+        //simple account page for registering
         public ActionResult Account2()
         {
             return View();
@@ -69,6 +74,9 @@ namespace ProiectFinalASP.Controllers
         }*/
         //Criptarea datelor - contributia lui Joldes
 
+        //Http action result, when button is pressed check if account exists 
+        //and logs in user by using static class credentials, and ecrypting the password
+        //using the Assembly .dll Encryption
         [HttpPost]
         public ActionResult AccountCheck(string name, string password)
         {
@@ -98,7 +106,7 @@ namespace ProiectFinalASP.Controllers
                     }
                     //Validarea datelor de intrare in AccountCreate - contributia lui Joldes
 
-                    if (user.Username == name && user.Password == password)
+                    if (user.Username == name && user.Password == password)//Validare daca exista name si password in baza de date
                     {
                         //Criptarea datelor - contributia lui Joldes
                         byte[] encryptPassword = Encryption.Encryption.EncryptString(password);
@@ -113,7 +121,7 @@ namespace ProiectFinalASP.Controllers
             return Json("Wrong username or password");
         }
 
-        [HttpPost]
+        [HttpPost]// Functie care creeaza un cont bazat pe user input, si il adauga la baza de date ItemContext.users
         public ActionResult AccountCreate(string name, string password)
         {
             using (ItemContext idb = new ItemContext())
